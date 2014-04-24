@@ -1,0 +1,51 @@
+#!/usr/bin
+
+import sys
+
+def detecting(ss):
+	ss_lst = ss.strip('\n\r ').split(' ')
+	ss_lst.reverse()
+	cycle_len = 0
+	cycle_lst = []
+	for idx in range(1, len(ss_lst)/2+1):
+		if 2*idx > len(ss_lst):
+			break
+		if ss_lst[:idx] == ss_lst[idx:2*idx]:
+			cycle_len = idx
+			cycle_lst = ss_lst[:idx]
+	cycle_lst.reverse()
+	
+	real_cycle_lst = None
+	for idx in range(1, len(cycle_lst)/2+1):
+		if len(cycle_lst) % idx <> 0:
+			continue
+		is_ok = True
+		for i in range(len(cycle_lst)/idx):
+			if cycle_lst[:idx] <> cycle_lst[i*idx:(i+1)*idx]:
+				is_ok = False
+		if is_ok:
+			real_cycle_lst = cycle_lst[:idx]
+			break
+	if real_cycle_lst is None:
+		real_cycle_lst = cycle_lst
+	
+	output = ''
+	for s in real_cycle_lst:
+		output += s+' '
+	print output.strip(' ')
+	
+def detecting_cycles(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		detecting(lines.strip('\r\n'))
+	f.close()
+	
+detecting_cycles(sys.argv[1])
+
+	
+'''
+#test
+detecting(r'2 0 6 3 1 6 3 1 6 3 1')
+detecting(r'3 4 8 0 11 9 7 2 5 6 10 1 49 49 49 49')
+detecting(r'1 2 3 1 2 3 1 2 3')
+'''

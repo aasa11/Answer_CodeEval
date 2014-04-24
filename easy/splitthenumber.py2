@@ -1,0 +1,37 @@
+#!/usr/bin
+
+import sys
+
+def cal_number(ss):
+	s_num, s_cal = ss.strip('\n\r ').split(' ')
+	methods = 'add'
+	idx = s_cal.find('+')
+	if idx < 0:
+		idx = s_cal.find('-')
+		methods = 'minus'
+	output = ''
+	if idx >= 0:
+		s1_num = s_num[:idx]
+		s2_num = s_num[idx:]
+		if methods =='add':
+			output += str(int(s1_num)+int(s2_num))
+		else:
+			output += str(int(s1_num)-int(s2_num))
+	print output
+	
+def split_the_number(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		cal_number(lines.strip('\r\n'))
+	f.close()
+	
+split_the_number(sys.argv[1])
+
+'''
+#test
+cal_number(r'3413289830 a-bcdefghij')
+cal_number(r'776 a+bc')
+cal_number(r'12345 a+bcde')
+cal_number(r'1232 ab+cd')
+cal_number(r'90602 a+bcde')
+'''

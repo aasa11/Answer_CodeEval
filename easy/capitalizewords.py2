@@ -1,0 +1,43 @@
+#!/usr/bin
+
+import sys
+
+ord_a = ord('a')
+ord_z = ord('z')
+ord_A = ord('A')
+
+def captalize_letter(s):
+	if ord(s) <=ord_z and ord(s) >= ord_a:
+		s = chr(ord(s)-ord_a+ord_A)
+	return s
+
+def captalize_string(ss):
+	ss = captalize_letter(ss[0])+ss[1:]
+	idx = 1
+	len_ss = len(ss)
+	while True:
+		if idx >= len_ss:
+			break
+		idx2 = ss[idx:].find(' ')
+		if idx2 >= 0 and idx2+idx +1 < len_ss:
+			ss = ss[:idx+idx2+1]+captalize_letter(ss[idx+idx2+1])+ss[idx+idx2+2:]
+			idx += idx2+2
+		else:
+			break
+	print ss
+
+def capitalize_words(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		lines = lines.strip('\n')
+		captalize_string(lines)
+		
+capitalize_words(sys.argv[1])
+
+'''
+#test
+captalize_string('Hello world')
+captalize_string('javaScript language')
+captalize_string('a letter')
+captalize_string('1st thing')
+'''

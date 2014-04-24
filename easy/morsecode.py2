@@ -1,0 +1,93 @@
+#!/usr/bin
+
+import sys
+
+morse_dic = {
+			r'.-' : r'A',
+			r'.' : r'E',
+			r'..' : r'I',
+			r'--' : r'M',
+			r'--.-' : r'Q',
+			r'..-' : r'U',
+			r'-.--' : r'Y',
+			r'-...' : r'B',
+			r'..-.' : r'F',
+			r'.---' : r'J',
+			r'-.' : r'N',
+			r'.-.' : r'R',
+			r'...-' : r'V',
+			r'--..' : r'Z',
+			r'-.-.' : r'C',
+			r'--.' : r'G',
+			r'-.-' : r'K',
+			r'---' : r'O',
+			r'...' : r'S',
+			r'.--' : r'W',
+			r'-..' : r'D',
+			r'....' : r'H',
+			r'.-..' : r'L',
+			r'.--.' : r'P',
+			r'-' : r'T',
+			r'-..-' : r'X',
+			r'-----' : r'0',
+			r'....-' : r'4',
+			r'---..' : r'8',
+			r'.----' : r'1',
+			r'.....' : r'5',
+			r'----.' : r'9',
+			r'..---' : r'2',
+			r'-....' : r'6',
+			r'...--' : r'3',
+			r'--...' : r'7',
+			r'.-.-.-' : r'.',
+			r'..--..' : r'?',
+			r'-.-.--' : r'!',
+			r'-.--.' : r'(',
+			r'.--.-.' : r'@',
+			r'---...' : r':',
+			r'-...-' : r'=',
+			r'-....-' : r'-',
+			r'-.--.-' : r')',
+			r'.-.-.' : r'+',
+			r'--..--' : r',',
+			r'.----.' : r"'",
+			r'..--.-' : r'_',
+			r'...-..-' : r'$',
+			r'-.-.-.' : r';',
+			r'-..-.' : r'/',
+			r'.-..-.' : r'"',
+			r'.-...' : r'&',
+			}
+
+def decode_morse(ss):
+	output = ''
+	unknow_dic = {}
+	ss_lst = ss.strip(' \n').split('  ')
+	for s_lst in ss_lst:
+		s_l = s_lst.strip(' ').split(' ')
+		for s in s_l:
+			if s in morse_dic:
+				output += morse_dic[s]
+			else:
+				#pass
+				#output += s
+				unknow_dic[s] = 1
+		output+= ' '
+	#print unknow_dic
+	print output.strip(' ')
+
+	
+def morse_code(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		decode_morse(lines.strip('\n\r'))
+	f.close()
+	
+morse_code(sys.argv[1])
+#morse_code(r'../res/morse_code.txt')
+'''	
+#test
+decode_morse(r'.- ...- ..--- .-- .... .. . -.-. -..-  ....- .....')
+decode_morse(r'-... .... ...--')
+'''
+

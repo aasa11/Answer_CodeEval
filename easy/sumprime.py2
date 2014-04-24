@@ -1,0 +1,30 @@
+#!/usr/bin
+def is_prime(N, lst):
+	if N == 1:
+		return False
+	if N in lst:
+		return True
+	else:
+		for d in lst:
+			if N%d == 0:
+				return False
+	return True
+
+def sum_prime(LIMITCNT):
+	lst = [2]
+	cnt = 3
+	sum = 2
+	idx = 1
+	while True:
+		if is_prime(cnt, lst):
+			sum += cnt
+			idx += 1
+			lst.append(cnt)
+			if idx >= LIMITCNT:
+				break
+		cnt += 1
+		
+	print sum
+	
+sum_prime(1000)
+		 

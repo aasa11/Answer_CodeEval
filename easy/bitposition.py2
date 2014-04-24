@@ -1,0 +1,53 @@
+#!/usr/bin
+
+import binascii
+import sys
+
+def bit_postion(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		bit_position_detail(lines)
+	f.close()
+	
+def bit_position_detail(lines):
+	lst = lines.split(',')
+	N = int(lst[0])
+	p1 = int(lst[1])
+	p2 = int(lst[2])
+	ss = ''
+	while N >1:
+		d = N%2
+		ss += str(d)
+		N = N/2
+	ss += str(1)
+	if ss[p1-1] == ss[p2-1]:
+		print "true"
+	else:
+		print "false"
+	#print ss
+	
+bit_postion(sys.argv[1])
+'''
+bit_position_detail('86,2,3')
+bit_position_detail('125,1,2')
+bit_position_detail('437403,6,18')
+bit_position_detail('940382,3,20')
+bit_position_detail('597695,11,16')
+bit_position_detail('156974,1,11')
+bit_position_detail('691366,4,10')
+bit_position_detail('971238,4,17')
+bit_position_detail('869643,6,16')
+bit_position_detail('879618,4,17')
+bit_position_detail('916038,5,7')
+bit_position_detail('955601,11,17')
+bit_position_detail('734955,2,19')
+bit_position_detail('872737,10,12')
+bit_position_detail('540433,10,12')
+bit_position_detail('915766,11,17')
+bit_position_detail('818812,8,19')
+bit_position_detail('791068,13,17')
+bit_position_detail('827720,3,17')
+bit_position_detail('208263,2,18')
+bit_position_detail('959424,9,13')
+bit_position_detail('326086,10,13')
+'''

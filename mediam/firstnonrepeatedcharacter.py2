@@ -1,0 +1,23 @@
+#!/usr/bin
+
+import sys
+
+def check_ss(ss):
+	for idx in range(len(ss)):
+		#print ss[idx+1:]
+		if ss[idx] not in ss[:idx]+ss[idx+1:]:
+			print ss[idx]
+			return
+
+def first_non_repeated_character(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		check_ss(lines.strip('\n\r'))
+	f.close()
+	
+first_non_repeated_character(sys.argv[1])
+
+
+#test
+# check_ss(r'yellow')
+# check_ss(r'tooth')

@@ -1,0 +1,27 @@
+#!/usr/bin
+
+import sys
+
+def get_longest_word(ss):
+	ss_lst = ss.split(' ')
+	long_s = 0
+	match_s = ''
+	for s in ss_lst:
+		if long_s < len(s):
+			match_s = s
+			long_s = len(s)
+	print match_s
+
+def longest_word(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		get_longest_word(lines.strip('\n\r'))
+	f.close()
+	
+longest_word(sys.argv[1])
+'''	
+#test
+get_longest_word('some line with text')
+get_longest_word('another line')
+get_longest_word('')
+'''

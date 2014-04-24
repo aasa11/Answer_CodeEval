@@ -1,0 +1,45 @@
+#!/usr/bin
+
+import sys
+
+def get_digit(s):
+	if s == 'zero':
+		return '0'
+	elif s == 'one':
+		return '1'
+	elif s == 'two':
+		return '2'
+	elif s == 'three':
+		return '3'
+	elif s == 'four':
+		return '4'
+	elif s == 'five':
+		return '5'
+	elif s == 'six':
+		return '6'
+	elif s == 'seven':
+		return '7'
+	elif s == 'eight':
+		return '8'
+	elif s == 'nine':
+		return '9'
+	else :
+		return
+		
+def get_digit_string(ss):
+	ss_lst = ss.strip('\n').split(';')
+	output = ''
+	for s in ss_lst:
+		output += get_digit(s)
+	print output
+	
+def word_to_digit(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		get_digit_string(lines.strip('\n\r'))
+	f.close()
+	
+word_to_digit(sys.argv[1])
+#test
+#get_digit_string('zero;two;five;seven;eight;four')
+#get_digit_string('three;seven;eight;nine;two')

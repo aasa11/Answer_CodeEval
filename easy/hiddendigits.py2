@@ -1,0 +1,36 @@
+#!/usr/bin
+
+import sys
+
+def ch_change(s):
+	if ord(s) >=ord('0') and ord(s) <= ord('9'):
+		return s
+	elif ord(s) >= ord('a') and ord(s) <= ord('j'):
+		return str(ord(s)-ord('a'))
+	else:
+		return ''
+		
+def get_digits(ss):
+	ss = ss.strip('\r\n')
+	output = ''
+	for s in ss:
+		output += ch_change(s)
+	if output == '':
+		output = 'NONE'
+	print output
+	
+def hidden_digits(infile):
+	f = open(infile,'r')
+	for lines in f.readlines():
+		get_digits(lines.strip('\r\n'))
+	f.close()
+	
+hidden_digits(sys.argv[1])
+
+'''
+#test
+get_digits(r'abcdefghik')
+get_digits(r'Xa,}A#5N}{xOBwYBHIlH,#W')
+get_digits(r"(ABW>'yy^'M{X-K}q,")
+get_digits(r'6240488')
+'''

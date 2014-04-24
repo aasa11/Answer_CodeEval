@@ -1,0 +1,30 @@
+#!/usr/bin
+
+import sys
+
+def splitstring(ss):
+	s_lst = ss.strip('\n\r ').split(',')
+	s1 = []
+	s2 = []
+	for v in s_lst:
+		try:
+			int_v = int(v)
+			s2.append(int_v)
+		except:
+			s1.append(str(v))
+	output = ''
+	for v in s1:
+		output += str(v)+','
+	output = output.strip(',')
+	if len(s1) > 0 and len(s2) >0:
+		output += '|'
+	for v in s2:
+		output += str(v) + ','
+	print output.strip(',')
+
+def mixed_content(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+			splitstring(lines.strip('\n\r'))
+
+mixed_content(sys.argv[1])

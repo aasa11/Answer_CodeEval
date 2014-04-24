@@ -1,0 +1,48 @@
+#!/usr/bin
+
+import sys
+
+ord_A = ord('A')
+ord_Z = ord('Z')
+ord_a = ord('a')
+ord_z = ord('z')
+
+def cal_beautiful_string(strings):
+	used_letter = {}
+	for s in strings:
+		if ord(s) <= ord_z and ord(s) >= ord_a:
+			ord_s = ord(s)- ord_a+1
+		elif ord(s) <= ord_Z and ord(s) >= ord_A:
+			ord_s = ord(s)- ord_A+1
+		else:
+			continue
+		if ord_s in used_letter:
+			used_letter[ord_s] += 1
+		else:
+			used_letter[ord_s] = 1
+			
+	lst = []
+	for _,v in used_letter.items():
+		lst.append(v)
+		
+	lst.sort(reverse = True)
+	sum = 0
+	idx = 26
+	for v in lst:
+		sum += idx*v
+		idx -= 1
+	return sum
+
+def beautiful_number(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		print cal_beautiful_string(lines)
+	f.close()
+	
+beautiful_number(sys.argv[1])
+	
+#print cal_beautiful_string('ABbCcc')
+#print cal_beautiful_string('Good luck in the Facebook Hacker Cup this year!')
+#print cal_beautiful_string('Ignore punctuation, please :)')
+#print cal_beautiful_string('Sometimes test cases are hard to make up.')
+#print cal_beautiful_string('So I just go consult Professor Dalves')

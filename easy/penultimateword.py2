@@ -1,0 +1,19 @@
+#!/usr/bin
+
+import sys
+
+def get_next_to_last(ss):
+	ss_lst = ss.split(' ')
+	if len(ss_lst) <= 1:
+		return
+	print ss_lst[-2]
+	return
+	
+def penultimate_word(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		lines = lines.strip('\n')
+		get_next_to_last(lines)
+	f.close()
+	
+penultimate_word(sys.argv[1])

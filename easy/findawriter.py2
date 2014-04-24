@@ -1,0 +1,29 @@
+#!/usr/bin
+
+import sys
+
+def get_writer(ss):
+	ss = ss.strip(' \n\r')
+	ss_name, ss_position = ss.split('|')
+	ss_name = ss_name.strip(' \n\r')
+	ss_position = ss_position.strip(' \n\r')
+	lst_postion = ss_position.split(' ')
+	out_s = ''
+	for pos in lst_postion:
+		v = ss_name[int(pos)-1]
+		out_s += v
+	print out_s
+
+def find_a_writer(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		get_writer(lines)
+	f.close()
+	
+find_a_writer(sys.argv[1])
+	
+'''	
+#test
+get_writer('osSE5Gu0Vi8WRq93UvkYZCjaOKeNJfTyH6tzDQbxFm4M1ndXIPh27wBA rLclpg| 3 35 27 62 51 27 46 57 26 10 46 63 57 45 15 43 53')
+get_writer('3Kucdq9bfCEgZGF2nwx8UpzQJyHiOm0hoaYP6ST1WM7Nks5XjrR4IltBeDLV vA| 2 26 33 55 34 50 33 61 44 28 46 32 28 30 3 50 34 61 40 7 1 31')
+'''

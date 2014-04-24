@@ -1,0 +1,26 @@
+#!/usr/bin
+
+import sys
+
+def rem_ch(ss):
+	s1, s2 = ss.strip('\n\r,').split(',')
+	s2 = s2.strip(' ')
+	output = ''
+	for s in s1:
+		if s not in s2:
+			output += s
+	print output
+	
+def remove_characters(infile):
+	f = open(infile,'r')
+	for lines in f.readlines():
+		rem_ch(lines.strip('\r\n'))
+	f.close()
+	
+remove_characters(sys.argv[1])
+
+'''
+#test
+rem_ch(r'how are you, abc')
+rem_ch(r'hello world, def')
+'''

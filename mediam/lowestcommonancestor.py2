@@ -1,0 +1,103 @@
+#!/usr/bin
+
+import sys
+
+class bnode:
+	def __init__(self, v, root = None):
+		self.root = root
+		self.v = v
+		self.left = None
+		self.right = None
+	
+	def addleft(self, bnode):
+		self.left = bnode
+		bnode.root = self
+		
+	def addright(self, bnode):
+		self.right = bnode
+		bnode.root = self
+
+	def find_v(self, v):
+		if self.v == v:
+			return self
+		n = None
+		if self.left is not None:
+			n = self.left.find_v(v)
+		if n is not None:
+			return n
+		if self.right is not None:
+			n = self.right.find_v(v)
+		return n
+			
+	def get_ancestor_lst(self):
+		lst = [self]
+		n = self
+		while n.root is not None:
+			lst.append(n.root)
+			n = n.root
+		# print self.v,
+		# for n in lst:
+			# print n.v,
+		# print '.'
+		return lst
+		
+def buildtree():
+	n0 = bnode(30)
+	n11 = bnode(8)
+	n0.addleft(n11)
+	n12 = bnode(52)
+	n0.addright(n12)
+	n21 = bnode(3)
+	n11.addleft(n21)
+	n22 = bnode(20)
+	n11.addright(n22)
+	n31 = bnode(10)
+	n22.addleft(n31)
+	n32  =bnode(29)
+	n22.addright(n32)
+	return n0
+	
+def do_find(v):
+	root = buildtree()
+	n = root.find_v(v)
+	print n.v
+
+def show_tree():
+	pass
+
+def find_ancestor(ss):
+	root = buildtree()
+	s1, s2 = ss.strip('\n\r ').split(' ')
+	s1, s2 = int(s1), int(s2)
+	n1 = root.find_v(s1)
+	n2 = root.find_v(s2)
+	if n1 is None:
+		print s1,"not found"
+		return 
+	if n2 is None:
+		print s2,"not found"
+		return 
+	lst_n1 = n1.get_ancestor_lst()
+	lst_n2 = n2.get_ancestor_lst()
+	
+	for n in lst_n1:
+		if n in lst_n2:
+			print n.v
+			return 
+	print "not find common ancestor"
+	
+
+def lowest_common_ancestor(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		find_ancestor(lines.strip('\n\r '))
+	f.close()
+	
+lowest_common_ancestor(sys.argv[1])
+	
+	
+#'''
+#test
+# do_find(29)
+find_ancestor(r'8 52')
+find_ancestor(r'3 29')

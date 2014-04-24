@@ -1,0 +1,29 @@
+#!/usr/bin
+
+import sys
+
+
+
+def cal_distance(ss):
+	pos_lst = ss.strip('\n\r').split(') (')
+	pos1 = pos_lst[0]
+	pos2 = pos_lst[1]
+	xy1 = pos1.strip(' ()').split(',')
+	xy2 = pos2.strip(' ()').split(',')
+	x1, y1, x2, y2 = int(xy1[0]), int (xy1[1]), int(xy2[0]), int(xy2[1])
+	#print x1, y1, x2, y2 
+	dis = ((x1-x2)**2 + (y1-y2)**2)**0.5
+	print int(dis)
+
+def calculate_distance(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		cal_distance(lines.strip('\n\r'))
+	f.close()
+
+calculate_distance(sys.argv[1])
+'''	
+#test
+cal_distance(r'(25, 4) (1, -6)')
+cal_distance(r'(47, 43) (-25, -11)')
+'''

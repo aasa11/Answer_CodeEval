@@ -1,0 +1,7 @@
+#!/usr/bin
+
+def pt_odd():
+	for d in range(1,99+1,2):
+		print d
+		
+pt_odd()

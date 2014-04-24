@@ -1,0 +1,21 @@
+#!/usr/bin
+
+import sys
+
+def is_armstrong_number(X):
+	len_x = len(str(X))
+	sum_pow_x = sum([int(x)**len_x for x in str(X)])
+	if X == sum_pow_x:
+		return True
+	else:
+		return False
+
+def armstrong_numbers(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		print is_armstrong_number(int(lines))
+
+armstrong_numbers(sys.argv[1])	
+#print is_armstrong_number(6)
+#print is_armstrong_number(153)
+#print is_armstrong_number(351)
