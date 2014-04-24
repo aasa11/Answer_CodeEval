@@ -1,0 +1,76 @@
+#!/usr/bin
+
+import sys
+
+board_lst =[]
+def init_board():
+	global board_lst
+	for row in range(256):
+		lst_row = []
+		for col in range(256):
+			lst_row.append(0)
+		board_lst.append(lst_row)
+	return board_lst
+	
+def do_setCol(board_lst, col, v):
+	for idx in range(256):
+		board_lst[idx][col] = v
+	return board_lst
+
+def do_setRow(board_lst, row, v):
+	for idx in range(256):
+		board_lst[row][idx] = v
+	return board_lst
+		
+def do_queryCol(board_lst, col):
+	sum = 0
+	for idx in range(256):
+		sum += board_lst[idx][col]
+	print sum
+	return sum
+
+def do_queryRow(board_lst, row):
+	sum = 0
+	for idx in range(256):
+		sum += board_lst[row][idx]
+	print sum
+	return sum
+
+def do_cmd(cmd):
+	global board_lst
+	cmd_lst = cmd.split(' ')
+	if len(cmd_lst) <= 0:
+		return
+	if cmd_lst[0] == 'SetCol':
+		board_lst = do_setCol(board_lst, int(cmd_lst[1]),int(cmd_lst[2]))
+	elif cmd_lst[0] == 'SetRow':
+		board_lst = do_setRow(board_lst, int(cmd_lst[1]),int(cmd_lst[2]))
+	elif cmd_lst[0] == 'QueryCol':
+		do_queryCol(board_lst, int(cmd_lst[1]))
+	elif cmd_lst[0] == 'QueryRow':
+		do_queryRow(board_lst, int(cmd_lst[1]))
+	else:
+		return
+
+def query_board(infile):
+	init_board()
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		lines.strip('\n')
+		do_cmd(lines)
+	f.close()
+
+query_board(sys.argv[1])	
+'''
+init_board()		
+do_cmd('SetCol 32 20')
+do_cmd('SetRow 15 7')
+do_cmd('SetRow 16 31')
+do_cmd('QueryCol 32')
+do_cmd('SetCol 2 14')
+do_cmd('QueryRow 10')
+do_cmd('SetCol 14 0')
+do_cmd('QueryRow 15')
+do_cmd('SetRow 10 1')
+do_cmd('QueryCol 2')
+'''

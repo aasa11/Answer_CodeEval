@@ -1,0 +1,33 @@
+#!/sur/bin
+
+def is_prime(N, lst):
+	if N == 1:
+		return False
+	if N in lst:
+		return True
+	else:
+		for d in lst:
+			if N%d == 0:
+				return False
+	return True
+	
+def is_palindrome(N):
+	ss = str(N)
+	for i in xrange(0,len(ss)/2+1):
+		if ss[i] <> ss[-(i+1)]:
+			return False
+	return True
+	
+def prime_palindrome(LIMITCNT):
+	dt = 2
+	lst = [2]
+	for d in xrange(3, LIMITCNT+1):
+		if is_prime(d, lst):
+			lst.append(d)
+			if is_palindrome(d):
+				dt = d
+				
+	print dt
+	
+prime_palindrome(1000)
+	

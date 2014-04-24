@@ -1,0 +1,52 @@
+#!/usr/bin
+
+import sys
+
+def get_data(num,s,s5,s10):
+	if num == 0:
+		return ''
+	elif num>=1 and num <= 3:
+		return s*num
+	elif num == 4:
+		return s+s5
+	elif num ==5:
+		return s5
+	elif num>=6 and num<=8:
+		return s5+s*(num-5)
+	elif num == 9:
+		return s+s10
+	else:
+		return ''
+	
+
+
+def num_to_roman(num):
+	if num <1 or num > 3999:
+		return ''
+	ss = ''	
+	M = int(num/1000)
+	ss += get_data(M, 'M', 'M1', 'M2')
+	num = num-M*1000
+	C = int(num/100)
+	ss += get_data(C, 'C','D', 'M')
+	num = num-C*100
+	X = int(num/10)
+	ss += get_data(X, 'X','L', 'C')
+	I = num-X*10
+	ss += get_data(I, 'I', 'V', 'X')
+	print ss
+
+	
+def roman_numerals(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		num_to_roman(int(lines))
+	f.close()
+	
+roman_numerals(sys.argv[1])
+'''
+#test
+num_to_roman(159)
+num_to_roman(296)
+num_to_roman(3992)
+'''

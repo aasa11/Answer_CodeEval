@@ -1,0 +1,20 @@
+#!/usr/bin
+
+import sys
+
+def get_multy(ss):
+	s1,s2 = ss.strip('\r\n').split('|')
+	s1_lst = s1.strip(' ').split(' ')
+	s2_lst = s2.strip(' ').split(' ')
+	output = ''
+	for idx in range(len(s1_lst)):
+		output += str(int(s1_lst[idx])*int(s2_lst[idx]))+' '
+	print output.strip(' ')
+
+def multiply_lists(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		get_multy(lines.strip('\n'))
+	f.close()
+	
+multiply_lists(sys.argv[1])

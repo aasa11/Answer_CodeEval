@@ -1,0 +1,14 @@
+#!/usr/bin
+
+import sys
+
+def is_even_num(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		if int(lines)%2 == 0:
+			print 1
+		else:
+			print 0
+	f.close()
+	
+is_even_num(sys.argv[1])

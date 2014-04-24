@@ -1,0 +1,134 @@
+#!/usr/bin
+
+import sys
+
+lst_road = []
+lst_pass = []
+global_ok = False
+
+def read_one_road(ss):
+	lst = []
+	for s in ss:
+		if s == '#':
+			lst.append(0)
+		elif s == '_':
+			lst.append(1)
+		elif s == 'C':
+			lst.append(2)
+	return lst
+
+def getchar(s):
+	if s == 0:
+		return '#'
+	elif s == 1:
+		return '_'
+	else:
+		return 'C'
+	
+def get_road(infile):
+	global lst_road
+	global lst_pass
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		lst = read_one_road(lines.strip('\r\n'))
+		lst_road.append(lst)
+		lst_pass.append(-1)
+	f.close()
+
+def get_available_path(lst):
+	lstpass = []
+	for idx in range(len(lst)):
+		if lst[idx] ==2:
+			lstpass.append(idx)
+	if len(lstpass) <= 0:
+		for idx in range(len(lst)):
+			if lst[idx] == 1:
+				lstpass.append(idx)
+	return lstpass	
+	
+def find_road(road_level, path_idx, isBack = False):
+	global lst_road
+	global lst_pass 
+	global global_ok
+	if road_level == len(lst_road):
+		global_ok = True
+		return True
+	if not isBack:
+		if road_level == 0:
+			lst = get_available_path(lst_road[road_level])
+			#print lst
+			path_idx = lst[0]
+			lst_pass[road_level] = path_idx
+			find_road(road_level+1, path_idx,False)
+		else:
+			lst = get_available_path(lst_road[road_level])
+			if path_idx-1 in lst:
+				lst_pass[road_level] = path_idx -1
+				find_road(road_level+1, path_idx-1,False)
+			elif path_idx in lst:
+				lst_pass[road_level] = path_idx 
+				find_road(road_level+1, path_idx,False)
+			elif path_idx+1 in lst:
+				lst_pass[road_level] = path_idx+1 
+				find_road(road_level+1, path_idx+1, False)
+			else:
+				find_road(road_level, path_idx, True)
+	else:
+		if road_level == 0:
+			lst = get_available_path(lst_road[road_level])
+			for s in lst:
+				if s > path_idx:
+					lst_pass[road_level] = s
+					find_road(road_level+1, s, False)
+					break
+		else:
+			lst = get_available_path(lst_road[road_level])
+			is_find = False
+			lst_idx = lst.find(path_idx)
+			for i in range(len(lst)):
+				s = lst[i]
+				if i > lst_idx and (s == lst_pass[road_level-1] or s == lst_pass[road_level-1] +1 or s == lst_pass[road_level-1] -1):
+					is_find = True
+					lst_pass[road_level] = s
+					find_road(road_level+1, s, False)
+					break
+			if not is_find:
+				find_road(road_level-1, lst_pass[road_level-1], True)
+
+def print_road():
+	global lst_road
+	global lst_pass
+	
+	for road_idx in range(len(lst_road)):
+		output =''
+		path_id = lst_pass[road_idx]
+		if road_idx >0:
+			path_id2 = lst_pass[road_idx-1]
+		else:
+			path_id2 = -1
+		if path_id2 < 0 or path_id == path_id2:
+			path_s = '|'
+		elif path_id2 == path_id +1:
+			path_s = '/'
+		else:
+			path_s = '\\'
+		lst = lst_road[road_idx]
+		for idx in range(len(lst)):
+			if idx == path_id:
+				output += path_s
+			else:
+				output += getchar(lst[idx])
+		print output
+	
+				
+def racing_chars(infile):
+	get_road(infile)
+	find_road(0,0, False)
+	print_road()
+	
+
+racing_chars(sys.argv[1])
+#racing_chars(r'F:\Code\codeeval_challenge\res\racingchars.txt')		
+		
+	
+	

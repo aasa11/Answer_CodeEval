@@ -1,0 +1,25 @@
+#!/usr/bin
+
+import sys
+
+fib = [0,1,1]
+
+def get_fib(n):
+	global fib
+	if n<=len(fib)-1:
+		return fib[n]
+	for k in range(len(fib), n+1):
+		fib_k = fib[k-1]+fib[k-2]
+		fib.append(fib_k)
+	return fib[n]
+	
+def fibonacci_series(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		print get_fib(int(lines))
+	f.close()
+	
+fibonacci_series(sys.argv[1])
+
+#print get_fib(5)
+#print get_fib(12)

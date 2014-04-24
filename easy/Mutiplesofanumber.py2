@@ -1,0 +1,19 @@
+#!/usr/bin
+
+import sys
+
+def multiples_of_a_number(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		lst = lines.split(',')
+		X = int(lst[0])
+		N = int(lst[1])
+		p = 1
+		while True:
+			if N*p>=X:
+				print p*N
+				break
+			p += 1
+			
+
+multiples_of_a_number(sys.argv[1])

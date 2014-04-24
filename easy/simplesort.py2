@@ -1,0 +1,24 @@
+#!/usr/bin
+
+import sys
+
+def sort_data(lines):
+	line_lst = lines.split(' ')
+	line_lst.sort(key = lambda a: float(a) )
+	ss = ''
+	for s in line_lst:
+		ss += s+' '
+	ss = ss.strip(' ')
+	print ss
+
+def simple_sort(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		lines = lines.strip('\n')
+		sort_data(lines)
+	f.close()
+	
+simple_sort(sys.argv[1])
+	
+#sort_data('70.920 -38.797 14.354 99.323 90.374 7.581')
+#sort_data('-37.507 -3.263 40.079 27.999 65.213 -55.552')

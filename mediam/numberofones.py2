@@ -1,0 +1,29 @@
+#!/usr/bin
+
+import sys
+
+def get_number(n):
+	output = 0
+	for i in range(32):
+		ni = n<<(i+1)
+		x = 0x80000000
+		v = x & ni
+		if v<>0:
+			output += 1 
+	print output
+	
+def number_of_ones(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		get_number(int(lines))
+	f.close()
+	
+number_of_ones(sys.argv[1])
+
+
+'''
+#test
+get_number(10)
+get_number(22)
+get_number(56)
+'''

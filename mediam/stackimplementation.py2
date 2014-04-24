@@ -1,0 +1,55 @@
+#!/usr/bin
+
+import sys
+
+stack_lst = []
+
+def s_push(v):
+	global stack_lst
+	stack_lst.append(v)
+
+def s_pop():
+	global stack_lst
+	if s_isempty():
+		return None
+	v = stack_lst[-1]
+	stack_lst.pop()
+	return v
+	
+def s_isempty():
+	global stack_lst
+	if len(stack_lst) <= 0:
+		return True
+	return False
+	
+def do_st(ss):
+	ss_lst = ss.strip('\r\n ').split(' ')
+	for s in ss_lst:
+		s_push(s)
+	
+	idx = 0
+	global stack_lst
+	output = ''
+	while not s_isempty():
+		v = s_pop()
+		if idx%2 == 0:
+			output += v + ' '
+		idx += 1
+	print output.strip(' ')
+	
+def stack_implementation(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		do_st(lines.strip('\r\n'))
+	f.close()
+	
+stack_implementation(sys.argv[1])
+
+'''
+#test
+do_st(r'1 2 3 4')
+do_st(r'10 -2 3 4')
+'''
+do_st(r'')
+		
+	
