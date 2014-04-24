@@ -1,0 +1,16 @@
+#!/usr/bin
+
+#import os
+import sys
+
+def reverse_word(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		lines = lines.strip('\n')
+		lst = lines.split(' ')
+		lst.reverse()
+		ss = ''
+		for s in lst:
+			ss += s+' '
+		print ss.rstrip(' ')
+reverse_word(sys.argv[1])
