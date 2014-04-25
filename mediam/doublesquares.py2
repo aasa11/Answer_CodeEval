@@ -1,0 +1,44 @@
+#!/usr/bin/python
+
+import sys
+
+def double_squares(infile):
+	f = open(infile, 'r')
+	head = -1
+	total = 0
+	for lines in f.readlines():
+		N = int(lines)
+		if head == -1:
+			head = N
+			continue
+		if total < head:
+			total += 1
+			do_double(N)
+			continue
+	f.close()
+	
+lst = [x**2 for x in range(int(2147483647**0.5)+1)]
+dic_lst  = {}
+for x in lst:
+	dic_lst[x] = 1
+	
+def do_double(N):
+	cnt = 0
+	dic_ans = {}	
+	for x in lst:
+		if x > N:
+			break
+		if N-x in dic_lst:
+			an_lst = [x, N-x]
+			an_lst.sort()
+			dic_ans[str(an_lst[0])+':'+str(an_lst[1])] = 1
+	cnt = len(dic_ans)
+	print cnt
+	
+double_squares(sys.argv[1])
+#double_squares('../res/double_squares.txt')
+# do_double(10)
+# do_double(25)
+# do_double(3)
+# do_double(0)
+# do_double(1)

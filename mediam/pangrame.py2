@@ -1,0 +1,25 @@
+#!/usr/bin/python
+
+import sys
+
+def do_pangram(ss):
+	missing_lst = ''
+	for idx in range(ord('a'), ord('z')+1):
+		s = chr(idx)
+		if s not in ss.lower():
+			missing_lst += s
+	if missing_lst == '':
+		print 'NULL'
+	else:
+		print missing_lst
+
+def pangram(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		do_pangram(lines.strip('\r\n'))
+	f.close()
+	
+pangram(sys.argv[1])
+
+#do_pangram(r'A quick brown fox jumps over the lazy dog')
+#do_pangram(r'A slow yellow fox crawls under the proactive dog')

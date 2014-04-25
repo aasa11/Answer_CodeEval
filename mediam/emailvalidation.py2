@@ -1,0 +1,49 @@
+#!/usr/bin/python
+
+import sys
+import re
+#pattern = re.compile(r'^[_A-Za-z0-9-.\+]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$')
+pattern = re.compile(r'^[A-Za-z0-9\._\-\+]+@[A-Za-z0-9\._\-]+\.([A-Za-z]{2,})$')
+pattern2 = re.compile('^"[_A-Za-z0-9-.\+@]+(.[_A-Za-z0-9-]+)*"@[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$')
+
+valid_ch_lst = ['.','@','-','_',]
+
+for idx in range(ord('a'), ord('z')+1):
+	valid_ch_lst.append(chr(idx))
+	
+for idx in range(ord('A'), ord('Z')+1):
+	valid_ch_lst.append(chr(idx))
+	
+for idx in range(ord('0'), ord('9')+1):
+	valid_ch_lst.append(chr(idx))
+
+#print valid_ch_lst
+def email_validation(infile):
+	f = open(infile,'r')
+	for lines in f.readlines():
+		#print lines, ': ', 
+		do_email(lines.strip('\n\r'))
+	f.close()
+	
+def do_email(ss):
+	m = pattern.match(ss)
+	if m:
+		print 'true'
+	else:
+		m = pattern2.match(ss)
+		if m:
+			print 'true'
+		else:
+			print 'false'
+	
+email_validation(sys.argv[1])
+
+#do_email('foo@bar.com')
+#do_email('this is not an email id')
+#do_email('admin#codeeval.com')
+#do_email('good123@bad.com')
+#do_email('just"not"right@example.com')
+#do_email('a"b(c)d,e:f;g<h>i[j\k]l@example.com')
+#do_email('A@b@c@example.com')
+#do_email('"very.unusual.@.unusual.com"@example.com')
+#do_email('this\ still\"not\\allowed@example.com')

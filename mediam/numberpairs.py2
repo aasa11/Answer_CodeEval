@@ -1,0 +1,33 @@
+#!/usr/bin/python
+
+import sys
+
+def do_number(ss):
+	ss1, ss2 = ss.strip(' ;').split(';')
+	X = int(ss2)
+	lst = [int(x) for x in ss1.strip(' ,').split(',')]
+	L = len(lst)
+	output = ''
+	for idx in range(L-1):
+		a1 = lst[idx]
+		for idx2 in range(idx+1,L):
+			a2 = lst[idx2]
+			if a1+a2 == X:
+				output += str(a1)+','+str(a2)+';'
+	if output == '':
+		print 'NULL'
+	else:
+		print output.strip(';')
+	
+	
+def number_pairs(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		do_number(lines.strip('\n\r'))
+	f.close()
+	
+number_pairs(sys.argv[1])
+
+# do_number('1,2,3,4,6;5')
+# do_number('2,4,5,6,9,11,15;20')
+# do_number('1,2,3,4;50')
