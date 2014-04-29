@@ -1,0 +1,51 @@
+#!/usr/bin/python
+
+import sys
+
+prime_lst = [2]
+
+def cal_prime_lst(X):
+	if X <= 2:
+		return
+	for x in range(3, X+1):
+		x2 = (x**0.5)+2
+		is_prime = True
+		for d in prime_lst:
+			if d >x2:
+				break
+			if x%d == 0:
+				is_prime = False
+				break
+		if is_prime:
+			prime_lst.append(x)
+			
+	return
+
+def pt_prime_lst(X):
+	output = ''
+	for p in prime_lst:
+		if p>=X:
+			break
+		output += str(p)+','
+	print output.strip(',')
+
+	
+def prime_numbers(infile):
+	#global Max_number
+	X_lst = []
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		X = int (lines)
+		#print '[',X,']'
+		X_lst.append(X)
+	f.close()
+	X_max = max(X_lst)
+	cal_prime_lst(X_max)
+	for X in X_lst:
+		pt_prime_lst(X)
+
+prime_numbers(sys.argv[1])
+#prime_numbers('../res/primenumber.txt')		
+#pt_prime_lst(10)
+#pt_prime_lst(20)
+#pt_prime_lst(100)
