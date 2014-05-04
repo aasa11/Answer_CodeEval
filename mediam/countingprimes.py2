@@ -1,0 +1,52 @@
+#!/usr/bin/python
+
+import sys
+
+max_cal = 10
+prime_lst = [2,3,5,7]
+
+def counting_primes(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		do_counting(lines.strip('\n\r'))
+	f.close()
+	
+def do_counting(ss):
+	global max_cal
+	global prime_lst
+	num_start , num_end = ss.split(',', 2)
+	num_start, num_end = int(num_start), int(num_end)
+	if num_end < num_start:
+		print 0
+		return
+	if num_end >max_cal:
+		for x in range(max_cal+1, num_end+1):
+			add_prime(x)
+	cnt = 0
+	for x in prime_lst:
+		if x >= num_start and x <=num_end:
+			cnt += 1
+	
+	print cnt
+
+
+def add_prime(x):
+	global max_cal
+	global prime_lst
+	if x <= max_cal:
+		return
+	max_cal = x
+	xx = x**0.5+2
+	for d in prime_lst:
+		if d > xx:
+			break
+		if x > d and x%d == 0 :
+			return
+	prime_lst.append(x)
+	
+	
+	
+counting_primes(sys.argv[1])
+
+# do_counting('2,10')
+# do_counting('20,30')
