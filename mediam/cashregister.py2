@@ -1,0 +1,84 @@
+#!/usr/bin/python
+
+import sys
+
+DIC_PRICE = {
+			100*0.01 : 'PENNY',
+			100*0.05 : 'NICKEL',
+			100*0.1 : 'DIME',
+			100*0.25 : 'QUARTER',
+			100*0.5 : 'HALF DOLLAR',
+			100*1 : 'ONE',
+			100*2 : 'TWO',
+			100*5 : 'FIVE',
+			100*10 : 'TEN',
+			100*20 : 'TWENTY',
+			100*50 : 'FIFTY',
+			100*100 : 'ONE HUNDRED',
+			}
+			
+LST_PRICE = [
+			100*100,
+			100*50,
+			100*20,
+			100*10,
+			100*5,
+			100*2,
+			100*1,
+			100*0.5,
+			100*0.25,
+			100*0.1,
+			100*0.05,
+			100*0.01,
+			]
+
+def cash_register(infile):
+	f = open(infile, 'r')
+	for lines in f.readlines():
+		do_cash(lines.strip('\n\r'))
+	f.close()
+
+def pt_delta(delta):
+	rem = delta
+	output = []
+	len_x = len(LST_PRICE)
+	idx = 0
+	while idx <len_x:
+		if LST_PRICE[idx] > rem:
+			idx += 1
+		elif LST_PRICE[idx] == rem:
+			output.append(LST_PRICE[idx])
+			rem = 0
+			break
+		else:
+			output.append(LST_PRICE[idx])
+			rem = rem - LST_PRICE[idx]
+			continue
+
+	out_str = ','.join([DIC_PRICE[d] for d in output])
+	print out_str
+	
+	
+def do_cash(ss):
+	price, cash = ss.strip(';\r\n').split(';',2)
+	price, cash  = int(100*float(price)), int(100*float(cash))
+	#print price, cash
+	if cash < price:
+		print 'ERROR'
+		return
+	elif cash == price:
+		print 'ZERO'
+		return
+	else:
+		delta = cash-price
+		pt_delta(delta)
+		return
+		
+cash_register(sys.argv[1])	
+
+
+# do_cash('15.94;16.01')
+# do_cash('17;16')
+# do_cash('35;35')
+# do_cash('45;50')
+	
