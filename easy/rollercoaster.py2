@@ -1,0 +1,34 @@
+import sys
+import os
+
+def isLetter(s):
+	if (ord(s) <= ord('z') and ord(s)>=ord('a')) or \
+		(ord(s) <= ord('Z') and ord(s)>=ord('A')):
+		return True
+	return False
+	
+def roll_letter(ss):
+	toBig = 0
+	outss  =''
+	for s in ss:
+		if isLetter(s):
+			if toBig %2 == 0:
+				outss += s.upper()
+			else:
+				outss += s.lower()
+			toBig += 1
+		else:
+			outss += s
+	return outss
+	
+def roll_file(filename):
+	f = open(filename, 'r')
+	for lines in f.readlines():
+		print roll_letter(lines)
+		
+roll_file(sys.argv[1])
+
+
+'''test
+print roll_letter('To be, or not to be: that is the question.')
+'''

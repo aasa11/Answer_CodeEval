@@ -35,13 +35,52 @@ def get_year(ss):
 	month, year = ss.strip(' ').split(' ')
 	year = int(year)
 	month = get_month(month)
-	year = float(year)+float(month)/12.0
+	year = (year-1990)*12+month
 	return year
 	
 def cal_year(ss):
-	s1, s2 = ss.strip(' ;-\n\r').split('-')
+	ss = ss.strip(' ;-\n\r')
+	#print ss
+	s1,s2 = ss.split('-')
 	s1,s2 = get_year(s1), get_year(s2)
-	return s2-s1
+	return [s1,s2]
+
 	
-def cal_years(ss)
-	ss_lst = ss.strip(' \r\n;').split(';')
+def cal_gap(gap_year, new_gap):
+	for k in range(new_gap[0],new_gap[1]+1):
+		gap_year[k] = 1
+		#print k, gap_year[k]
+	return gap_year
+	
+def cal_years(ss):
+	ss= ss.strip(' \r\n;')
+	#print ss
+	ss_lst = ss.split(';')
+	years = 0
+	gap_year = [0 for _ in range(31*12)]
+	#print gap_year
+	for v in ss_lst:
+		new_gap = cal_year(v)
+		#print new_gap
+		gap_year = cal_gap(gap_year, new_gap)
+	for gap in gap_year:
+		years += gap
+	#print years/12.0, int(years/12)
+	return int(years/12)
+
+	
+def read_year_file(filename):
+	f = open(filename, 'r')
+	for ss in f.readlines():
+		print cal_years(ss)
+	f.close()
+	
+
+read_year_file(sys.argv[1])	
+'''test
+cal_years('Feb 2004-Dec 2009; Sep 2004-Jul 2008')
+cal_years('Aug 2013-Mar 2014; Apr 2013-Aug 2013; Jun 2014-Aug 2015; Apr 2003-Nov 2004; Apr 2014-Jan 2015')
+cal_years('Mar 2003-Jul 2003; Nov 2003-Jan 2004; Apr 1999-Nov 1999')
+cal_years('Apr 1992-Dec 1993; Feb 1996-Sep 1997; Jan 2002-Jun 2002; Sep 2003-Apr 2004; Feb 2010-Nov 2011')
+cal_years('Feb 2004-May 2004; Jun 2004-Jul 2004')
+'''
