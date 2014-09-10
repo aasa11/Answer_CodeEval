@@ -1,0 +1,34 @@
+import sys
+
+def cal(round):
+	if round <=0:
+		print ''
+		return
+	if round == 1:
+		print 1
+		return
+	plst = [[1],]
+	for idx in xrange(2, round+1):
+		bf_lst = plst[idx-2]
+		now_lst = [1]
+		for idx2 in xrange(len(bf_lst)-1):
+			now_lst.append(bf_lst[idx2]+bf_lst[idx2+1])
+		now_lst.append(1)
+		plst.append(now_lst)
+	outstr = ''
+	for lst in plst:
+	  for l in lst:
+	  	outstr += str(l)+' '
+	outstr = outstr.strip(' ')
+	print outstr
+
+def pt(filename):
+	f = open(filename, 'r')
+	for lines in f.readlines():
+		cal(int(lines))
+	f.close()
+
+pt(sys.argv[1])
+
+'''test'''
+#cal(6)

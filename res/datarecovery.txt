@@ -1,0 +1,20 @@
+used IBM first mid purpose in The Fortran the the developed was '50s, general at language widely and programming became language high-level;17 7 15 10 20 8 1 3 9 14 5 4 11 19 6 22 16 12 21 13 2
+However, and 1998 was 2000 until implemented it not;1 8 7 3 9 6 5 2
+of developed Autocode of but for Atlas thread development, the Atlas Manchester separate contemporary machine was University 1 A;15 11 9 6 3 12 17 5 7 13 8 16 4 2 19 10 14 18
+compiler language convert into code the it a programming to used machine automatically A language,;7 12 10 13 15 11 4 6 2 8 5 14 9 1
+was Mark The by 1 "Mark autocode 1954 the second developed called 1 Brooker in the was Autocode" for and;15 8 1 10 9 18 3 13 17 2 5 16 19 11 12 7 4 20 6
+machine code convert language, the it language compiler to into used automatically programming A a;14 15 10 3 11 4 12 7 8 13 5 9 2 1
+in early Manchester, Alick Autocode Glennie developed the University of At 1950s the;10 12 5 6 9 7 8 11 3 4 1 13
+of 1949, an Mauchly's in Code, developed languages electronic for Short proposed computer ever one was first high-level the John;10 7 18 2 6 4 16 14 19 17 3 5 20 15 9 8 12 13 11
+of 1961 Cambridge of University Mathematical in was for Hartley devised the The Laboratory 2 EDSAC version by;11 18 14 13 12 15 17 7 3 10 8 4 1 16 6 5 2
+the developed programming became language purpose IBM at '50s, in mid the was first general widely used high-level Fortran and language The;9 5 21 13 22 20 7 6 11 8 10 14 4 15 19 16 17 18 3 12 2
+Autocode the Glennie Manchester, of At 1950s early University developed Alick the in;9 2 7 5 4 1 13 12 3 8 6 11
+FLOW-MATIC in substantially became and 1959 early in publicly complete The compiler 1958 available was;2 14 12 4 10 15 8 7 5 13 1 3 9 6
+Alick developed the Autocode University Manchester, of Glennie At in early the 1950s;6 8 11 9 3 5 4 7 1 10 12 2
+computer in 1950s The communicate languages a first designed to written were programming to the instructions;11 14 16 1 7 4 10 2 5 6 13 12 3 9 15
+descendent use in was only the actual in it design major influence direct a AIMACO time and were the COBOL, of its at since Flow-Matic;17 22 20 2 12 7 21 6 13 8 4 5 16 3 18 25 14 19 24 10 9 15 23 11
+and until implemented was 2000 However, not it 1998;8 6 5 3 9 1 4 2
+proposed electronic computer Code, of the Short 1949, Mauchly's John first an developed ever one for in high-level languages was;5 19 20 4 10 11 3 7 2 1 12 18 16 15 9 17 6 13 14
+of Laboratory Mathematical University Cambridge Hartley by was EDSAC The of 2 in 1961 for devised version the;13 16 15 12 14 10 9 7 5 1 11 6 17 18 3 8 2
+University developed Autocode thread Manchester Atlas machine A for separate of but the 1 was contemporary Atlas development, of;14 11 9 5 16 8 19 1 12 4 15 3 13 18 10 2 17 7
+was straight source-language for Known Mercury advanced optimisation the from Autocode, diagnostics and local Autocode a were as noted adapted development its EDSAC for and 2 code was it circumstances, time for which object;7 9 27 21 1 12 31 25 33 11 5 28 18 16 13 8 30 2 20 14 10 22 3 15 26 4 24 19 6 17 34 32 29

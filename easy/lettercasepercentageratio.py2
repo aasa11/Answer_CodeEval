@@ -1,0 +1,26 @@
+import sys
+
+def pt_per(strs):
+	d_up = 0
+	d_lo = 0
+	for s in strs:
+		if ord(s)<=ord('Z') and ord(s) >=ord('A'):
+			d_up += 1
+		else:
+			d_lo += 1
+	print "lowercase: %.2f uppercase: %.2f"%(d_lo*1.0/(d_up+d_lo)*100.0, d_up*1.0/(d_up+d_lo)*100.0)
+			
+
+def pt(filename):
+	f = open(filename, 'r')
+	for lines in f.readlines():
+		pt_per(lines.strip('\n \r'))
+	f.close()
+	
+pt(sys.argv[1])
+
+'''test
+pt_per('thisTHIS')
+pt_per('AAbbCCDDEE')
+pt_per('N')
+pt_per('UkJ')'''

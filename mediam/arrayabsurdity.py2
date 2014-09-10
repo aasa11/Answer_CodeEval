@@ -15,7 +15,7 @@ def array_absurdity(infile):
 		do_array(lines)
 	f.close()
 	
-array_absurdity(sys.argv[1])
+#array_absurdity(sys.argv[1])
 
-#do_array(r'5;0,1,2,3,0')
-#do_array(r'20;0,1,10,3,2,4,5,7,6,8,11,9,15,12,13,4,16,18,17,14')
+do_array(r'5;0,1,2,3,0')
+do_array(r'20;0,1,10,3,2,4,5,7,6,8,11,9,15,12,13,4,16,18,17,14')

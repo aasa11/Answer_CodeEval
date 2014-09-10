@@ -1,0 +1,27 @@
+import sys
+
+def pt_angle(d_angle):
+	d = int(d_angle)
+	remain = (d_angle - d)*60
+	f = int(remain)
+	j = int((remain - f)*60)
+	print "%d.%.2d'%.2d\""%(d, f,j)
+	
+def pt(filename):
+	f = open(filename, 'r')
+	for lines in f.readlines():
+		pt_angle(float(lines))
+	f.close()
+	
+	
+pt(sys.argv[1])
+	
+'''test
+pt_angle(330.39991833)
+pt_angle(0.001)
+pt_angle(14.64530319)
+pt_angle(0.25)
+pt_angle(254.16991217)
+'''
+
+	
