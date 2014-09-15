@@ -1,0 +1,40 @@
+import sys
+
+def check_par(ss):
+	#print ss 
+	lst = []
+	for s in ss:
+		if s == '(' or s == '[' or s == '{':
+			lst.append(s)
+			continue
+		elif s == ')' or s == ']' or s == '}':
+			if len(lst) <= 0:
+				print 'False'
+				return
+			p = lst.pop()
+			
+			if (s ==')' and p =='(') or \
+				(s ==']' and p =='[') or \
+				(s =='}' and p =='{') :
+				continue
+			else:
+				print 'False'
+				return
+	if len(lst) <> 0:
+		print 'False'
+	else:
+		print 'True'
+	return
+	
+def pt(filename):
+	f = open(filename, 'r')
+	for ss in f.readlines():
+		check_par(ss)
+	f.close()
+	
+	
+pt(sys.argv[1])
+
+'''test'''
+#check_par('()')
+#check_par('([)]')

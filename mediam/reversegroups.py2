@@ -1,0 +1,37 @@
+import sys
+
+def rev(ss):
+	s , count = ss.strip('\n ;,').split(';')
+	count = int(count)
+	slst = s.split(',')
+	outlst = []
+	tmplst = []
+	for s in slst:
+		if len(tmplst) >= count:
+			for _ in range(len(tmplst)):
+				outlst.append(tmplst.pop())
+		tmplst.append(s)
+		
+	if len(tmplst) >= count:
+			for _ in range(len(tmplst)):
+				outlst.append(tmplst.pop())
+	else:
+		for s in tmplst:
+			outlst.append(s)
+		
+	outstr = ','.join(outlst)
+	print outstr
+	
+def pt(filename):
+	f = open(filename, 'r')
+	for lines in f.readlines():
+		#print lines
+		rev(lines)
+		
+	f.close()
+	
+pt(sys.argv[1])
+
+'''test'''
+#rev('1,2,3,4,5;2')
+#rev('1,2,3,4,5;3')

@@ -1,0 +1,28 @@
+import sys
+
+def check(ss):
+	if len(ss) == 0:
+		return 0
+	if len(ss) == 1:
+		return 1
+	if len(ss) == 2:
+		num = int(ss)
+		if num>=1 and num <=26:
+			return 2
+		else:
+			return 1
+	return check(ss[0])*check(ss[1:])+(check(ss[:2])-1)*check(ss[2:])
+
+def pt(filename):
+	f = open(filename,'r')
+	for lines in f.readlines():
+		#print lines
+		num = check(lines.strip('\n\r ,'))
+		print num
+	f.close()
+	
+pt(sys.argv[1])
+
+'''test'''
+#print check('12')
+#print check('123')

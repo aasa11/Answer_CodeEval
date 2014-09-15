@@ -1,0 +1,21 @@
+import sys
+
+def check(num):
+	a = int(num/5)
+	num = num-a*5
+	b = int(num/3)
+	c = num-3*b
+	print (a+b+c)
+	
+def pt(filename):
+	f = open(filename,'r')
+	for lines in f.readlines():
+		check(int(lines))
+		
+	f.close()
+	
+pt(sys.argv[1])
+
+'''test'''
+#check(11)
+#check(20)

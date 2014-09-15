@@ -1,0 +1,33 @@
+import sys
+
+def is_overlap(ss):
+	slist = ss.strip('\n ,').split(',')
+	slist = [int(x) for x in slist]
+	if len(slist)<8:
+		print "False"
+		return
+	ax1, ay1,ax2, ay2, bx1, by1, bx2, by2 = slist[0],slist[1],slist[2],slist[3],slist[4],slist[5],slist[6],slist[7]
+	
+	if (ax1 >=bx1 and ax1 <=bx2 and ay1<=by1 and ay1 >=by2) or \
+	   (ax1 >=bx1 and ax1 <=bx2 and ay2<=by1 and ay2 >=by2) or \
+	   (ax2 >=bx1 and ax2 <=bx2 and ay1<=by1 and ay1 >=by2) or \
+	   (ax2 >=bx1 and ax2 <=bx2 and ay2<=by1 and ay2 >=by2) or \
+	   (bx1 >=ax1 and bx1 <=ax2 and by1<=ay1 and by1 >=ay2) or \
+	   (bx1 >=ax1 and bx1 <=ax2 and by2<=ay1 and by2 >=ay2) or \
+	   (bx2 >=ax1 and bx2 <=ax2 and by1<=ay1 and by1 >=ay2) or \
+	   (bx2 >=ax1 and bx2 <=ax2 and by2<=ay1 and by2 >=ay2) :
+		print "True"
+	else:
+		print "False"
+
+def pt(filename):
+	f =  open(filename, 'r')
+	for lines in f.readlines():
+		is_overlap(lines)
+	f.close()
+	
+pt(sys.argv[1])
+
+'''test'''
+#is_overlap('-3,3,-1,1,1,-1,3,-3')
+#is_overlap('-3,3,-1,1,-2,4,2,2')

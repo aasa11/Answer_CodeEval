@@ -1,0 +1,37 @@
+import sys
+
+def check(ss):
+	total, cnt = ss.strip('\n\r ,').split(',')
+	total = int(total)
+	cnt = int(cnt)
+	slst = [[x, 0] for x in range(total)]
+	#print slst
+	idx = 0
+	maxcnt = 0
+	outstr = ''
+	while maxcnt < total:
+		for s in slst:
+			if s[1] <>0:
+				continue
+			else:
+				idx += 1
+				if idx == cnt:
+					idx = 0
+					maxcnt += 1
+					s[1] = maxcnt
+					outstr += str(s[0])+' '
+		#print slst
+	print outstr.strip(' ')
+	
+	
+def pt(filename):
+	f = open(filename, 'r')
+	for lines in f.readlines():
+		check(lines)
+	f.close()
+	
+pt(sys.argv[1])
+
+'''test'''
+#check('10, 3')
+#check('5,2')
